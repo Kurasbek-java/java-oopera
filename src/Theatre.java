@@ -1,15 +1,10 @@
 import java.util.ArrayList;
 
 public class Theatre {
-
+/*Спасибо большое за комментарии)
+Думаю код стал более чище.
+Если ещё можно улучшить(сократить) код или есть ещё какие то лайфкахи, буду очень признателен)*/
     public static void main(String[] args) {
-        ShowManagement showManagement = new ShowManagement();
-        MusicalShow musicalShowBallet = new MusicalShow();
-        MusicalShow musicalShowOpera = new MusicalShow();
-
-        ArrayList<Actor> showActors = new ArrayList<>();
-        ArrayList<Actor> balletActors = new ArrayList<>();
-        ArrayList<Actor> operaActors = new ArrayList<>();
 
         Actor actorChristian = new Actor("Christian", "Bale", Sex.MALE, 185);
         Actor actorJohnny = new Actor("Johnny", "Depp", Sex.MALE, 184);
@@ -22,15 +17,12 @@ public class Theatre {
         Person choreographer = new Person("Paul", "Becker");
 
         //creating show
-        //showManagement.addActor(actorChristian, showActors);
-        //showManagement.addActor(actorJohnny, showActors);
-        Show show = new Show("Big Drama Show", 48, directorChristopher, showActors);
+        Show show = new Show("Big Drama Show", 48, directorChristopher, new ArrayList<Actor>());
+        show.addActor(actorChristian);
+        show.addActor(actorJohnny);
         show.printActors();
 
         //creating ballet
-        showManagement.addActor(actorOberyn, balletActors);
-        showManagement.addActor(actorJohnny, balletActors);
-
         String librettoTextBallet =
                 "На пустой сцене встречаются Судьба и Человек.\n" +
                         "Город замирает в ожидании, часы бьют полночь.\n" +
@@ -41,37 +33,35 @@ public class Theatre {
                         "В последнем акте Человек делает шаг вперёд,\n" +
                         "и тишина становится ответом.\n\n" +
                         "Занавес.";
-        musicalShowBallet.setLibrettoText(librettoTextBallet);
-        Ballet ballet = new Ballet("Big Drama Ballet", 65, directorQuentin, balletActors, musicAuthor, musicalShowBallet.getLibrettoText(), choreographer);
+
+        Ballet ballet = new Ballet("Big Drama Ballet", 65, directorQuentin, new ArrayList<Actor>(), musicAuthor, librettoTextBallet, choreographer);
+        ballet.addActor(actorOberyn);
+        ballet.addActor(actorJohnny);
+        ballet.showDirector();
         ballet.printActors();
-        showManagement.changeActor(actorChristian, "Depp", balletActors);
+        ballet.changeActor(actorChristian, "Depp");
         ballet.printActors();
         ballet.printLibrettoText();
 
         //create opera
-        showManagement.addActor(actorOberyn, operaActors);
-        showManagement.addActor(actorChristian, operaActors);
-
         String librettoTextOpera = """
-        О, ночь! Свидетель тайной клятвы,
-        Где сердце спорит с небом вновь.
-        Я слышу зов судьбы суровой,
-        Но в жилах — пламя и любовь!
-
-        Хор:
-        Выбор твой — и свет, и гибель,
-        Путь один — назад пути нет.
-
-        Занавес.
-        """;
-        musicalShowOpera.setLibrettoText(librettoTextOpera);
-        Opera opera = new Opera("Big Drama Opera", 78, directorChristopher, operaActors, musicAuthor, musicalShowOpera.getLibrettoText(), 2);
+                О, ночь! Свидетель тайной клятвы,
+                Где сердце спорит с небом вновь.
+                Я слышу зов судьбы суровой,
+                Но в жилах — пламя и любовь!
+                
+                Хор:
+                Выбор твой — и свет, и гибель,
+                Путь один — назад пути нет.
+                
+                Занавес.
+                """;
+        Opera opera = new Opera("Big Drama Opera", 78, directorChristopher, new ArrayList<Actor>(), musicAuthor, librettoTextOpera, 2);
+        opera.addActor(actorOberyn);
+        opera.addActor(actorChristian);
         opera.printActors();
-        showManagement.changeActor(actorJohnny, "Joker", operaActors);
+        opera.changeActor(actorJohnny, "Joker");
         opera.printActors();
         opera.printLibrettoText();
-
     }
-
-
 }

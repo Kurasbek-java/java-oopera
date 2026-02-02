@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 public class Director extends Person {
-    int numberOfShows;
+    private int numberOfShows;
 
     public Director(String name, String surname, Sex sex, int numberOfShows) {
         super(name, surname, sex);
@@ -30,6 +30,6 @@ public class Director extends Person {
 
     @Override
     public String toString() {
-        return name + " " + surname;
+        return name + " " + surname + "(Спектаклей: " + numberOfShows + ")";
     }
 }

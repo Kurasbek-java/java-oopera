@@ -1,7 +1,7 @@
 import java.util.Objects;
 
-public class Actor extends  Person {
-    int height;
+public class Actor extends Person {
+    private int height;
 
     public Actor(String name, String surname, Sex sex, int height) {
         super(name, surname, sex);
@@ -11,8 +11,8 @@ public class Actor extends  Person {
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (surname != null ? surname.hashCode() :0);
-        result = 31 * result + (sex != null ? sex.hashCode() :0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + height;
         return result;
     }
